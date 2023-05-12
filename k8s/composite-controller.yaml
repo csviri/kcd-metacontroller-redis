@@ -1,0 +1,19 @@
+apiVersion: metacontroller.k8s.io/v1alpha1
+kind: CompositeController
+metadata:
+  name: redis-instance-controller
+spec:
+  generateSelector: true
+  parentResource:
+    apiVersion: csviri.io/v1
+    resource: redisinstances
+  childResources:
+    - apiVersion: v1
+      resource: services
+      updateStrategy:
+        method: InPlace
+  hooks:
+    sync:
+      webhook:
+        url: http://172.17.0.1:8080/sync
+#        url: http://host.minikube.internal:8080/sync
