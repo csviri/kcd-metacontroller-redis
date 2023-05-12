@@ -1,14 +1,3 @@
-
-# Install Metacontroller
-kubectl apply -k https://github.com/metacontroller/metacontroller/manifests/production
-
-
-Minikube host connection issue solution?
-https://github.com/kubernetes/minikube/issues/14631#issuecomment-1292420728
-
-Sample request:
-
-```json
 {
   "controller": {
     "kind": "CompositeController",
@@ -154,4 +143,3 @@ Sample request:
   "related": {},
   "finalizing": false
 }
-```

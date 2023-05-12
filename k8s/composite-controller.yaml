@@ -12,8 +12,15 @@ spec:
       resource: services
       updateStrategy:
         method: InPlace
+    - apiVersion: v1
+      resource: secrets
+      updateStrategy:
+        method: InPlace
+    - apiVersion: apps/v1
+      resource: deployments
+      updateStrategy:
+        method: InPlace
   hooks:
     sync:
       webhook:
-        url: http://172.17.0.1:8080/sync
-#        url: http://host.minikube.internal:8080/sync
+        url: http://host.minikube.internal:8080/sync
