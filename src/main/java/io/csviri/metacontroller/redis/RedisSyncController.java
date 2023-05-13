@@ -8,8 +8,6 @@ import jakarta.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Map;
-
 @Path("/sync")
 public class RedisSyncController {
 
@@ -18,13 +16,11 @@ public class RedisSyncController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public SyncResponse hello(Map<String,Object> payload) {
-        log.info("Request:{}",payload);
-
-        if (requiresAuthentication(payload) && deploymentReady(payload) && statusIsNotReady(payload)) {
+    public SyncResponse hello(SyncRequest request) {
+        log.info("Request:{}",request);
+        if (requiresAuthentication(request) && deploymentReady(request) && statusIsNotReady(request)) {
 
         }
-
         return createResponse("default");
     }
 
@@ -33,15 +29,15 @@ public class RedisSyncController {
     }
 
 
-    private boolean statusIsNotReady(Map<String, Object> payload) {
+    private boolean statusIsNotReady(SyncRequest request) {
         return false;
     }
 
-    private boolean deploymentReady(Map<String, Object> payload) {
+    private boolean deploymentReady(SyncRequest request) {
         return false;
     }
 
-    private boolean requiresAuthentication(Map<String, Object> payload) {
+    private boolean requiresAuthentication(SyncRequest request) {
         return false;
     }
 }
