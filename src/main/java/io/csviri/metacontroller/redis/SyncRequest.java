@@ -5,6 +5,7 @@ import io.csviri.metacontroller.redis.crd.RedisInstance;
 import io.fabric8.kubernetes.api.model.GenericKubernetesResource;
 import io.fabric8.kubernetes.api.model.HasMetadata;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -14,7 +15,7 @@ public class SyncRequest {
 
     private RedisInstance parent;
 
-    private Map<String, HasMetadata> children;
+    private Map<String, LinkedHashMap<String,HasMetadata>> children;
 
     public GenericKubernetesResource getController() {
         return controller;
@@ -34,11 +35,11 @@ public class SyncRequest {
         return this;
     }
 
-    public Map<String, HasMetadata> getChildren() {
+    public Map<String, LinkedHashMap<String,HasMetadata>> getChildren() {
         return children;
     }
 
-    public SyncRequest setChildren(Map<String, HasMetadata> children) {
+    public SyncRequest setChildren(Map<String, LinkedHashMap<String,HasMetadata>> children) {
         this.children = children;
         return this;
     }
