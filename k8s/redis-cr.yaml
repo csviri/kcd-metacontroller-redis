@@ -4,4 +4,4 @@ metadata:
   name: redis1
   namespace: default
 spec:
-  requireAuthentication: false
+  requireAuthentication: true

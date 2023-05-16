@@ -99,7 +99,7 @@ public class RedisSyncController {
     }
 
     private void setPasswordInRedis(SyncRequest request) {
-        // call redis API
+        log.info("Deployment ready. Setting password to Redis.");
     }
 
     public static <T> T loadYaml(Class<T> clazz, Class loader, String yaml) {
