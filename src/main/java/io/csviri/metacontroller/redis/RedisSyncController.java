@@ -1,13 +1,11 @@
 package io.csviri.metacontroller.redis;
 
 import io.csviri.metacontroller.redis.crd.RedisStatus;
-import io.fabric8.kubernetes.api.builder.Builder;
 import io.fabric8.kubernetes.api.model.HasMetadata;
 import io.fabric8.kubernetes.api.model.ObjectMetaBuilder;
 import io.fabric8.kubernetes.api.model.Secret;
 import io.fabric8.kubernetes.api.model.Service;
 import io.fabric8.kubernetes.api.model.apps.Deployment;
-import io.fabric8.kubernetes.api.model.runtime.RawExtension;
 import io.fabric8.kubernetes.client.readiness.Readiness;
 import io.fabric8.kubernetes.client.utils.Serialization;
 import jakarta.ws.rs.Consumes;
@@ -44,10 +42,10 @@ public class RedisSyncController {
             setPasswordInRedis(request);
         }
 
-        return createResponse(request);
+        return createResponseWithDesiredResources(request);
     }
 
-    private SyncResponse createResponse(SyncRequest request) {
+    private SyncResponse createResponseWithDesiredResources(SyncRequest request) {
         SyncResponse response = new SyncResponse();
         List<HasMetadata> resources = new ArrayList<>();
 
