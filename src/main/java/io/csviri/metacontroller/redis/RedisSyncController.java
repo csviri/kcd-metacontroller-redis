@@ -34,7 +34,7 @@ public class RedisSyncController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public SyncResponse hello(SyncRequest request) {
+    public SyncResponse sync(SyncRequest request) {
         log.info("Reconciling: {}", request.getParent().getMetadata().getName());
 
         if (request.getParent().getSpec().isRequireAuthentication() && deploymentReady(request)
