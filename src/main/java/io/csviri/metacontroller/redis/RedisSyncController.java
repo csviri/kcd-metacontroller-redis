@@ -47,16 +47,16 @@ public class RedisSyncController {
 
     private SyncResponse createResponseWithDesiredResources(SyncRequest request) {
         SyncResponse response = new SyncResponse();
-        List<HasMetadata> resources = new ArrayList<>();
+        List<HasMetadata> responseResources = new ArrayList<>();
 
-        resources.add(desiredDeployment(request));
-        resources.add(desiredService(request));
+        responseResources.add(desiredDeployment(request));
+        responseResources.add(desiredService(request));
 
         if (request.getParent().getSpec().isRequireAuthentication()) {
-            resources.add(desiredSecret(request));
+            responseResources.add(desiredSecret(request));
         }
 
-        response.setChildren(resources);
+        response.setChildren(responseResources);
         RedisStatus redisStatus = new RedisStatus();
         redisStatus.setReady(deploymentReady(request));
         response.setStatus(redisStatus);
